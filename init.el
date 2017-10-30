@@ -7,7 +7,6 @@
 
 (setq package-archives '(("gnu" . "https://elpa.gnu.org/packages/")
                          ("marmalade" . "https://marmalade-repo.org/packages/")
-			 ("melpa" . "https://melpa.org/packages/")
                          ("melpa-stable" . "https://stable.melpa.org/packages/")))
 
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -30,6 +29,26 @@ your recently and most frequently used commands.")
 
 (add-hook 'after-init-hook (lambda () (load "~/.emacs.d/packages.el")))
 
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+;;
+;; Ensure `el-get` is installed.
+;;
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+
+;;
+;; Custom Variables
+;;
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -38,6 +57,8 @@ your recently and most frequently used commands.")
  '(column-number-mode t)
  '(idris-interpreter-path "/home/mikkel/.local/bin/idris")
  '(inhibit-startup-screen t)
+ '(js-indent-level 2)
+ '(psc-ide-use-npm-bin t)
  '(show-trailing-whitespace t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
