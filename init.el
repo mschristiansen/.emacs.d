@@ -55,6 +55,9 @@ your recently and most frequently used commands.")
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(column-number-mode t)
+ '(haskell-process-args-stack-ghci
+   (quote
+    ("--ghci-options=-ferror-spans -fshow-loaded-modules" "--no-build" "--no-load")))
  '(idris-interpreter-path "/home/mikkel/.local/bin/idris")
  '(inhibit-startup-screen t)
  '(js-indent-level 2)
